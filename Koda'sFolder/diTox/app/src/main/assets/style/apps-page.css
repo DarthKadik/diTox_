@@ -1,0 +1,88 @@
+/* Recommendation tiles */
+
+.recommendation {
+    margin-top: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.use-more .app-icon {
+    background: url(../data/headspace-icon.png);
+}
+
+.use-less .app-icon {
+    background: url(../data/instagram-icon.png);
+}
+
+.el.app-info {
+    display: flex; 
+}
+
+.recommendation .el .app-icon {
+    width: 5vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.recommendation .txt {
+    width: calc(100% - 12vh);
+}
+
+.arrow {
+    width: 3vh;
+    background: url(./inc/Micons/SVG/arrow-right.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.el.rec {
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.el.rec p, .el.rec button {
+    margin-top: 0.5vh;
+}
+
+.el .cta {
+    font-size: 2vh;
+    padding: 0.8vh;
+    border: solid 3px rgba(255,255,255, 0.15);
+    border-radius: 6vh;
+    background: rgba(0, 0, 0, 0.2);
+    font-family: 'Varela Round', sans-serif;
+    color: white;
+}
+
+.negative {
+    color: rgba(255,100,100,0.7);
+    font-weight: bolder;
+}
+
+.positive {
+    color: rgba(100,255,100,0.7);
+    font-weight: bolder;
+}
+
+.neutral {
+    color: rgba(255,255,100,0.7);
+    font-weight: bolder;
+}
+
+.tile.positive {
+    background-color: rgba(96, 214, 144, 0.2);
+}
+
+.tile.negative {
+    background-color: rgba(214, 96, 96, 0.2);
+}
+
+.tile.neutral {
+    background-color: rgba(255, 224, 100, 0.2);
+}
