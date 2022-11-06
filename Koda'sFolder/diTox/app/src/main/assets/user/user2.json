@@ -1,0 +1,28 @@
+{
+  "client_id": "2",
+  "peer_ids": ["1"],
+  "secret_key": "sk2",
+  "public_key": "pk2",
+  "history": [
+    {
+      "peer_id": "1",
+      "messages": [
+        {
+          "message_id": "1",
+          "sender": "1",
+          "receiver": "2",
+          "timestamp": 123,
+          "message": "Hello!"
+        },
+        {
+          "message_id": "2",
+          "sender": "2",
+          "receiver": "1",
+          "timestamp": 234,
+          "message": "Hello!"
+        }
+      ]
+    }
+  ],
+  "keywords": ["android-development-phobia"]
+}

@@ -1,0 +1,35 @@
+{
+  "client_id": "3",
+  "peer_ids": ["1"],
+  "secret_key": "sk3",
+  "public_key": "pk3",
+  "history": [
+    {
+      "peer_id": "1",
+      "messages": [
+        {
+          "message_id": "3",
+          "sender": "3",
+          "receiver": "1",
+          "timestamp": 345,
+          "message": "Bonjour!"
+        },
+        {
+          "message_id": "4",
+          "sender": "3",
+          "receiver": "1",
+          "timestamp": 125,
+          "message": "Bonsoir!"
+        },
+        {
+          "message_id": "5",
+          "sender": "1",
+          "receiver": "3",
+          "timestamp": 1456,
+          "message": "Bonsoir!"
+        }
+      ]
+    }
+  ],
+  "keywords": ["OCD"]
+}

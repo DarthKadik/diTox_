@@ -1,0 +1,54 @@
+{
+  "client_id": "1",
+  "peer_ids": ["2", "3"],
+  "secret_key": "sk1",
+  "public_key": "pk1",
+  "history": [
+    {
+      "peer_id": "2",
+      "messages": [
+        {
+          "message_id": "1",
+          "sender": "1",
+          "receiver": "2",
+          "timestamp": 123,
+          "message": "Hello!"
+        },
+        {
+          "message_id": "2",
+          "sender": "2",
+          "receiver": "1",
+          "timestamp": 234,
+          "message": "Hello!"
+        }
+      ]
+    },
+    {
+      "peer_id": "3",
+      "messages": [
+        {
+          "message_id": "3",
+          "sender": "3",
+          "receiver": "1",
+          "timestamp": 345,
+          "message": "Bonjour!"
+        },
+        {
+          "message_id": "4",
+          "sender": "3",
+          "receiver": "1",
+          "timestamp": 125,
+          "message": "Bonsoir!"
+        },
+        {
+          "message_id": "5",
+          "sender": "1",
+          "receiver": "3",
+          "timestamp": 1456,
+          "message": "Bonsoir!"
+        }
+      ]
+    }
+  ],
+  "keywords": ["android-development-phobia", "OCD"]
+}

@@ -33,10 +33,33 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS = 1;
 
+    public LinearRegression linearRegression = new LinearRegression();
 
-    public static Map<String, List<Integer>> callThisSkynet() {
-        List<Integer> fakeWellbeingData = Arrays.asList(75, 32, 100, 40, 56, 42, 10);
-        Map<String, List<Integer>> returnMap = new HashMap<>();
+    public HashMap<String, Double> getRecommendations(){
+        Map<String, List<Double>> features = callThisSkynet();
+        Map<String, double[]> data = new HashMap<>();
+        for (Map.Entry<String, List<Double>> entry : features.entrySet()) {
+            String key = entry.getKey();
+            List<Double> value = entry.getValue();
+            double[] valueArray = new double[value.size()];
+            for (int i = 0; i < value.size(); i++) {
+                valueArray[i] = value.get(i);
+            }
+            data.put(key, valueArray);
+        }
+        this.linearRegression.train(data);
+        double[] betas = this.linearRegression.getBeta();
+        HashMap<Integer, String> featureMap = this.linearRegression.getFeatureMap();
+        HashMap<String, Double> coeffs = new HashMap<>();
+        for(int i = 0; i < betas.length; i++){
+            coeffs.put(featureMap.get(i), betas[i]);
+        }
+        return coeffs;
+    }
+
+    public static Map<String, List<Double>> callThisSkynet() {
+        List<Double> fakeWellbeingData = Arrays.asList(75.0, 32.0, 100.0, 40.0, 56.0, 42.0, 10.0);
+        Map<String, List<Double>> returnMap = new HashMap<>();
         returnMap.put("Wellbeing", fakeWellbeingData);
         List<String> topTenAppName = new ArrayList<>(UsageDataManager.getNLargestAndOthers(UsageDataManager.getUsageDataForThisWeek(AppContext.getAppContext()), 10).keySet());
 
@@ -53,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 if (localMap.containsKey(topTenAppName.get(j)))
                 {
                     try {
-                    returnMap.get(topTenAppName.get(j)).add(localMap.get(topTenAppName.get(j)).intValue());
+                    returnMap.get(topTenAppName.get(j)).add((double) localMap.get(topTenAppName.get(j)).intValue());
                     }
                     catch(Exception e) {
                         Log.i("catch","caught");
@@ -62,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     try {
-                        returnMap.get(topTenAppName.get(j)).add(0);
+                        returnMap.get(topTenAppName.get(j)).add(0.0);
                     }
                     catch(Exception e) {
                         Log.i("catch","caught");
