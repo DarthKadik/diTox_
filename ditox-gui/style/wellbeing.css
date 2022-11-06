@@ -1,0 +1,48 @@
+.main-text {
+    margin-top: 5vh;
+}
+
+.wellbeing {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-top: 2vh;
+    height: 50vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wellbeing * {
+    margin: 2vh;
+}
+
+.time-remaining {
+    font-size: 6vh;
+}
+
+.score-box {
+    text-align: center;
+}
+
+.score-box h1 {
+    font-size: 10vh;
+    padding:0;
+    margin-bottom: 3vh;
+}
+
+.score-box input {
+    padding:0;
+    width: 70vw;
+}
+
+.score-box button {
+    font-size: 2vh;
+    padding: 0.8vh;
+    border: solid 3px rgba(255,255,255, 0.15);
+    border-radius: 6vh;
+    background: rgba(0, 0, 0, 0.2);
+    font-family: 'Varela Round', sans-serif;
+    color: white;
+    margin-bottom: 6vh;
+}

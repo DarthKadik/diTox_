@@ -1,0 +1,70 @@
+.main-page-content {
+    width: 100%;
+    padding: 2vh;
+    padding-top: 12vh;
+    padding-bottom: 11vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+/* Stats panel */
+
+.statistics {
+    margin-bottom: 2vh;
+    padding-top: 1vh;
+    margin-right: 0 !important;
+}
+
+.statistics .main-text {
+    margin: 1vh;
+}
+
+/* Recommendation tiles */
+
+.recommendation {
+    margin-top: 2vh;
+    display: flex;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.use-more .app-icon {
+    background: url(../data/headspace-icon.png);
+}
+
+.use-less .app-icon {
+    background: url(../data/instagram-icon.png);
+}
+
+.use-more {
+    background-color: rgba(96, 214, 144, 0.2);
+}
+
+.use-less {
+    background-color: rgba(214, 96, 96, 0.2);
+}
+
+.recommendation .app-icon {
+    width: 5vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.recommendation .txt {
+    width: calc(100% - 12vh);
+}
+
+.arrow {
+    width: 3vh;
+    background: url(./inc/Micons/SVG/arrow-right.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}

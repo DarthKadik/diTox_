@@ -1,0 +1,72 @@
+.new-people-list {
+    width: 100%;
+    display: flex;
+}
+
+.person {
+    width: 7vh;
+    height: 7vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 7vh;
+    margin-right: 1.2vh;
+}
+
+.sub-txt {
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+}
+
+.hor-line {
+    background-color: rgba(240, 255, 253, 0.6);
+    width: calc(100% - 4vh);
+    height: 0.3vh;
+    border-radius: 1vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.time-ago {
+    opacity:0.6;
+}
+
+.arrow {
+    width: 3vh;
+    background: url(./inc/Micons/SVG/arrow-right.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.tile {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.message .person {
+    margin-left: 1vh;
+    margin-right: 1vh;
+    margin-top: 0;
+}
+
+.message .message-body {
+    width: calc(100% - 14vh);
+}
+
+.message {
+    display: flex;
+    margin-bottom: 1vh;
+}
+
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }

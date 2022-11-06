@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="./style/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style/chat-page.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+    <div id="main-bg" class="particle-bg"></div>
+    <div class="main-header main-control-item">
+        <div class="logo-container">
+            <div class="main-logo"></div>
+            <h1 class="logo-text">ditox</h1>
+        </div>
+        <a href="./index.html"><div class="menu-lines"></div></a>
+    </div>
+
+    <!-- Main page content -->
+    <div class="main-page-content" id="particles-js">
+        <p class="main-text">Conversations</p>
+        <p class="sub-txt">New contacts:</p>
+        <div class="new-people-list">
+        </div>
+        <div class="hor-line"></div>
+        <p class="sub-txt">Recent messages:</p>
+        
+    </div>
+
+    <div class="bottom-menu main-control-item">
+        <a href="./apps.html"><div class="apps"></div></a>
+        <a href="./chat.html"><div class="chat"></div></a>
+        <a href="./wellbeing.html"><div class="profile"></div></a>
+    </div>
+
+    <script src="./js/particles.min.js"></script>
+    <script src="./js/create-particles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="./js/helpers.js"></script>
+    <script src="./js/chat-page.js"></script>
+    <script>bgParticles();</script>
+</body>
+</html>

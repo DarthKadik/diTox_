@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="./style/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style/user-chat-page.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+    <div id="main-bg" class="particle-bg"></div>
+    <div class="peer-header">
+        <a href="./chat.html"><div class="back"></div></a>
+        <div class="upic"></div>
+        <p class="uname">Purple Elephant</p>
+    </div>
+
+    <!-- Main page content -->
+    <div class="main-page-content" id="particles-js">
+    </div>
+
+    <div class="bottom-menu main-control-item send-bar">
+        <input type="text" placeholder="Message...">
+        <button class="send" onclick="sendMessage();"></button>
+    </div>
+
+    <script src="./js/particles.min.js"></script>
+    <script src="./js/create-particles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="./js/helpers.js"></script>
+    <script src="./js/user-chat-page.js"></script>
+    <script>bgParticles();</script>
+</body>
+</html>
