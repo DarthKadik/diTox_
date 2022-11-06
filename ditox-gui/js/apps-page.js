@@ -9,7 +9,6 @@ const roundTimes = [0, 10, 15, 30, 45, 60];
 
 
 const names = ["Instagram","Telegram","Headspace","Youtube","Spotify"];
-const icons = ["./data/instagram-icon.png","./data/instagram-icon.png","./data/headspace-icon.png","./data/instagram-icon.png","./data/instagram-icon.png"];
 const avgTimes = [[50,90,50,20,40,30,50],[30,50],[50,60,70,80,90,50,20,40,30,50],[3,5],[30,50,70,10,90,50,30]];
 const avgInPastPeriod = [54,23,32,4,43];
 const effects = ["negative","neutral","positive","negative","positive"];
@@ -21,8 +20,17 @@ for (var i = 0; i < names.length; i++) {
     mainContentArea.appendChild(newElement);
 
     /* filling up element with usage data */
+    var icons = ["chrome","disney plus","facebook","hbo max","headspace","instagram","messenger","netflix","snapchat","spotify","telegram","tiktok","twitter","whatsapp","youtube"]
+    var iconPath;
+    if (icons.includes(names[i].toLowerCase())) {
+      iconPath = "./data/" + names[i].toLowerCase() + "-icon.png";
+    } else {
+      iconPath = "./data/unknown-icon.png";
+    }
+
     newElement.querySelector(".txt h3").innerHTML = names[i];
-    newElement.querySelector(".app-icon").style.backgroundImage = "url('"+icons[i]+"')";
+    newElement.querySelector(".app-icon").style.backgroundImage = "url('"+iconPath+"')";
+    newElement.querySelector(".app-icon").style.borderRadius = "1.2vh";
     newElement.querySelector(".avg-screen-time").innerHTML = avgInPastPeriod[i];
     createGraphInsideElement(newElement,avgTimes[i].slice(-7));
 
