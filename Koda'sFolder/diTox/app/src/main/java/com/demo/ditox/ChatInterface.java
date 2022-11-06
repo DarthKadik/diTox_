@@ -91,18 +91,18 @@ public class ChatInterface {
     }
 
     public void save() {
-        JSONObject object = null;
-        try {
-            object = new JSONObject(this.jsonState);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            object.put("history", Utils.messageMapToJSONArray(messages));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Utils.saveJsonToAssets(mContext.getApplicationContext(), String.format("user%s.json", this.mClientId), object.toString());
+//        JSONObject object = null;
+//        try {
+//            object = new JSONObject(this.jsonState);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            object.put("history", Utils.messageMapToJSONArray(messages));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        Utils.saveJsonToAssets(mContext.getApplicationContext(), String.format("user%s.json", this.mClientId), object.toString());
     }
 
 

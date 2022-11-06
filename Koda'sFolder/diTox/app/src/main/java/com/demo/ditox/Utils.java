@@ -26,10 +26,10 @@ public class Utils {
     static String getJsonFromAssets(Context context, String fileName) {
         String jsonString;
         try {
-            String dir = context.getFilesDir().getPath();
-//            InputStream is = context.getAssets().open("user/" + fileName);
-            File file = new File(dir + "/" +fileName);
-            InputStream is = new FileInputStream(file);
+//            String dir = context.getFilesDir().getPath();
+            InputStream is = context.getAssets().open("user/" + fileName);
+//            File file = new File(dir + "/" +fileName);
+//            InputStream is = new FileInputStream(file);
 
             int size = is.available();
             byte[] buffer = new byte[size];
