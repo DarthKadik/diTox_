@@ -74,50 +74,54 @@ const moodChart = new Chart(moodCanvas, {
     }
 });
 
+var appUsageData = [];
 // app usage chart
-const appUsageData = [32,20,8,15,4];
+function coolTest() {
+    document.getElementById("insight").innerHTML = "fasz ki van";
+}
 
-Chart.overrides.polarArea.plugins.legend.position = "bottom";
-Chart.overrides.polarArea.plugins.legend.labels.color = "rgb(240, 255, 253)";
+Android.showAppUsage();
+function appDataUpdater(numbers, appNames) {
+    appUsageData = numbers;
 
-const appUsageChart = new Chart(appsCanvas, {
-  type: 'polarArea',
-  data: {
-    labels: [
-      'Red',
-      'Green',
-      'Yellow',
-      'Grey',
-      'Blue'
-    ],
-    datasets: [{
-      label: "",
-      data: appUsageData,
-      backgroundColor: [
-        'rgba(162, 250, 238, 0.7)',
-        'rgba(162, 250, 238, 0.6)',
-        'rgba(162, 250, 238, 0.5)',
-        'rgba(162, 250, 238, 0.4)',
-        'rgba(162, 250, 238, 0.3)'
-      ]
-    }]
-  },
-  options: {
-    scales: {
-      r: {
-        ticks: {
-          display: false // Remove vertical numbers
+    Chart.overrides.polarArea.plugins.legend.position = "bottom";
+    Chart.overrides.polarArea.plugins.legend.labels.color = "rgb(240, 255, 253)";
+
+    const appUsageChart = new Chart(appsCanvas, {
+      type: 'polarArea',
+      data: {
+        labels: appNames,
+        datasets: [{
+          label: "",
+          data: appUsageData,
+          backgroundColor: [
+            'rgba(162, 250, 238, 0.7)',
+            'rgba(162, 250, 238, 0.6)',
+            'rgba(162, 250, 238, 0.5)',
+            'rgba(162, 250, 238, 0.4)',
+            'rgba(162, 250, 238, 0.3)'
+          ]
+        }]
+      },
+      options: {
+        scales: {
+          r: {
+            ticks: {
+              display: false // Remove vertical numbers
+            },
+            grid: {
+              color: "rgba(240, 255, 253, 0.2)"
+            }
+          }
         },
-        grid: {
-          color: "rgba(240, 255, 253, 0.2)"
+        elements: {
+          arc: {
+            borderWidth: 0,
+          }
         }
       }
-    },
-    elements: {
-      arc: {
-        borderWidth: 0,
-      }
-    }
-  }
 
-});
+    });
+}
+
+

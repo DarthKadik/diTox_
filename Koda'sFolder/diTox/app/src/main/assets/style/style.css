@@ -3,6 +3,10 @@
     --text-color: rgb(240, 255, 253);
 }
 
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
 body, html {
     background: var(--background);
     width: 100vw;

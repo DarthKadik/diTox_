@@ -1,7 +1,7 @@
 var statElemOne = document.querySelector("el chart");
 const oneWH = window.innerHeight*0.01;
 const moodScores = JSON.parse(localStorage.getItem("moods")).slice(-7);
-const roundTimes = [10, 15, 30, 45, 60];
+const roundTimes = [0, 10, 15, 30, 45, 60];
 
 //const names = Android.getAppNames();
 //const icons = Android.getAppIcons();
@@ -13,7 +13,7 @@ const icons = ["./data/instagram-icon.png","./data/instagram-icon.png","./data/h
 const avgTimes = [[50,90,50,20,40,30,50],[30,50],[50,60,70,80,90,50,20,40,30,50],[3,5],[30,50,70,10,90,50,30]];
 const avgInPastPeriod = [54,23,32,4,43];
 const effects = ["negative","neutral","positive","negative","positive"];
-const projectedIncrease = [0.13, false, false, 0.21, false]
+const projectedIncrease = [0.13, false, false, 0.21, false];
 
 const mainContentArea = document.querySelector(".main-page-content");
 for (var i = 0; i < names.length; i++) {
@@ -50,7 +50,6 @@ function createGraphInsideElement(parent, screenTimes) {
     var canvas = document.createElement('canvas');
     canvas.width = (parent.offsetWidth - 2*oneWH);
     canvas.height = (20*oneWH);
-    canvas.style.marginLeft = oneWH + 'px';
     canvas.style.marginTop = oneWH + 'px';
     canvas.style.marginBottom = oneWH + 'px';
     parent.querySelector(".chart").appendChild(canvas);    

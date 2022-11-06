@@ -10,11 +10,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -22,7 +26,10 @@ public class Utils {
     static String getJsonFromAssets(Context context, String fileName) {
         String jsonString;
         try {
-            InputStream is = context.getAssets().open(fileName);
+            String dir = context.getFilesDir().getPath();
+//            InputStream is = context.getAssets().open("user/" + fileName);
+            File file = new File(dir + "/" +fileName);
+            InputStream is = new FileInputStream(file);
 
             int size = is.available();
             byte[] buffer = new byte[size];
@@ -40,9 +47,12 @@ public class Utils {
 
     public static void saveJsonToAssets(Context applicationContext, String filename, String json) {
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(applicationContext.openFileOutput(filename, Context.MODE_PRIVATE));
-            outputStreamWriter.write(json);
-            outputStreamWriter.close();
+            String dir = applicationContext.getFilesDir().getPath();
+            File file = new File(dir + "/" +filename);
+            FileOutputStream fout = new FileOutputStream(file);
+
+            fout.write(json.getBytes());
+            fout.close();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -50,7 +60,7 @@ public class Utils {
     }
 
     public static List<String> jsonArrayToList(JSONArray peer_ids) throws JSONException {
-        List<String> peer_Ids = null;
+        List<String> peer_Ids = new ArrayList<>();
         for(int i = 0; i < peer_ids.length(); i++) {
             peer_Ids.add(peer_ids.getString(i));
         }
@@ -98,6 +108,20 @@ public class Utils {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
         return gson.toJson(messages);
+    }
+
+    public static List<HistoryItem> messageMapToJSONArray(ConcurrentMap<String, ConcurrentMap<String, Message>> messages) {
+        List<HistoryItem> items = new ArrayList<>();
+        for (String peer : messages.keySet()) {
+            List<Message> vals = new ArrayList<>();
+            for (String id : messages.get(peer).keySet()) {
+                vals.add(messages.get(peer).get(id));
+            }
+            HistoryItem item = new HistoryItem(peer, vals);
+            items.add(item);
+        }
+
+        return items;
     }
 
     public static List<HistoryItem> jsonArrayToHistoryItemList(JSONArray history) throws JSONException {

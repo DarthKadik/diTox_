@@ -1,11 +1,10 @@
 package com.demo.ditox;
 
-import android.content.Context;
-import android.webkit.JavascriptInterface;
+import static android.content.ContentValues.TAG;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import android.content.Context;
+import android.util.Log;
+import android.webkit.JavascriptInterface;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,11 +21,8 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Stack;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -42,7 +38,7 @@ public class ChatInterface {
     private List<String> peer_ids;
     private ConcurrentMap<String, Object> onces;
     private String public_key;
-    private String private_key;
+    private String secret_key;
     private String jsonState;
     private String base_url;
     Context mContext;
@@ -74,13 +70,19 @@ public class ChatInterface {
     }
 
     public void load() {
-        this.jsonState = Utils.getJsonFromAssets(mContext.getApplicationContext(), String.format("%s.json", this.mClientId));
+        this.jsonState = Utils.getJsonFromAssets(mContext.getApplicationContext(), String.format("user%s.json", this.mClientId));
         if (this.jsonState != null) {
             try {
                 JSONObject jsonState = new JSONObject(this.jsonState);
                 this.public_key = jsonState.getString("public_key");
-                this.private_key = jsonState.getString("private_key");
-                this.messages = Utils.jsonToMessageMap(jsonState.getString("messages"));
+                this.secret_key = jsonState.getString("secret_key");
+                List<HistoryItem> history = Utils.jsonArrayToHistoryItemList(jsonState.getJSONArray("history"));
+                for (HistoryItem item : history) {
+                    messages.putIfAbsent(item.peerId, new ConcurrentHashMap<>());
+                    for (Message msg : item.messages) {
+                        messages.get(item.peerId).put(msg.messageId, msg);
+                    }
+                }
                 this.peer_ids = Utils.jsonArrayToList(jsonState.getJSONArray("peer_ids"));
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -96,11 +98,11 @@ public class ChatInterface {
             e.printStackTrace();
         }
         try {
-            object.put("messages", Utils.messageMapToJson(messages));
+            object.put("history", Utils.messageMapToJSONArray(messages));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Utils.saveJsonToAssets(mContext.getApplicationContext(), String.format("%s.json", this.mClientId), this.jsonState);
+        Utils.saveJsonToAssets(mContext.getApplicationContext(), String.format("user%s.json", this.mClientId), object.toString());
     }
 
 
@@ -139,6 +141,7 @@ public class ChatInterface {
         try (Response response = client.newCall(request).execute()) {
             String resp = response.body().string();
 
+            Log.d(TAG, "fetch: " + resp);
             try {
                 // todo: do some decryption
                 JSONArray respArray = new JSONArray(resp);
