@@ -138,6 +138,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toast toast = Toast.makeText(AppContext.getAppContext(), "Loading...", Toast.LENGTH_SHORT);
+        toast.show();
+
         requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE}, 1);
 
         if (!permissionGiven())

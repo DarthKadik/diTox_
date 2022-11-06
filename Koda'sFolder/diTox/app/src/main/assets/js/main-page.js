@@ -24,9 +24,8 @@ statElemTwo.appendChild(appsCanvas);
 
 
 // mood chart
-
 const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
-const moodData = [4,5,4,6,8,7,9]
+const moodData = JSON.parse(localStorage.getItem("moods")).slice(-7);
 const moodChart = new Chart(moodCanvas, {
     type: 'line',
     data: {

@@ -1,6 +1,12 @@
 package com.demo.ditox;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
@@ -10,10 +16,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WebInterface {
     Context mContext;
@@ -24,14 +37,27 @@ public class WebInterface {
         mContext = c;
     }
 
-    //Example function. Can be called from JS using Android.showToast(myString);
     @JavascriptInterface
-    public void showToast(String toast) {
-        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-    }
+    public void getIcon() throws PackageManager.NameNotFoundException {
+        List<String> topPackages = new ArrayList<>(UsageDataManager.getNLargestAndOthers(UsageDataManager.getUsageDataForThisWeekAsPackageNames(AppContext.getAppContext()), 8).keySet());
+        Drawable icon = AppContext.getAppContext().getPackageManager().getApplicationIcon("com.demo.ditox");;
+        try {
+            icon = AppContext.getAppContext().getPackageManager().getApplicationIcon(topPackages.get(0));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
-    @JavascriptInterface
-    public void getNames() {
+        Bitmap bitmap = ((BitmapDrawable)icon).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] bitmapdata = stream.toByteArray();
+
+        String userDetailsBytesToStrings = new String(
+                bitmapdata, StandardCharsets.UTF_8);
+        JsonParser jsonParser = new JsonParser();
+
+        JsonObject jsonObjectOutput = (JsonObject) jsonParser.parse(userDetailsBytesToStrings);
+        System.out.println("Output : " + jsonObjectOutput);
 
     }
 }

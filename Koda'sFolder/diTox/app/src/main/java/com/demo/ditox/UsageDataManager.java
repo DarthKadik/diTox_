@@ -46,6 +46,49 @@ public class UsageDataManager {
         return usageDataMap;
     }
 
+   /* public static Map<String, List<Long>> getUsageDataForThisWeekOnDailyBasis(Context context)
+    {
+
+        List<UsageStats> appDataList = getInfo(getUsageDataOG(6, 1, context));
+        List<String> appNameList = getDescription(appDataList, context);
+        Map<String, List<Long>> usageDataMap= new HashMap<>();
+
+        for (int i = appDataList.size(); i-- > 0;) {
+            if (!usageDataMap.containsKey(appNameList.get(i)))
+            {
+                usageDataMap.put(appNameList.get(i), addappDataList.get(i).getTotalTimeInForeground() / 60000);
+            }
+            else
+            {
+                usageDataMap.replace(appNameList.get(i), usageDataMap.get(appNameList.get(i)) + appDataList.get(i).getTotalTimeInForeground() / 60000);
+            }
+        }
+        return usageDataMap;
+    } */
+
+    public static Map<String, Long> getUsageDataForThisWeekAsPackageNames(Context context)
+    {
+
+        List<UsageStats> appDataList = getInfo(getUsageDataOG(6, 1, context));
+        List<String> appNameList = new ArrayList<>();
+        for (UsageStats us: appDataList) {
+            appNameList.add(us.getPackageName());
+        }
+        Map<String, Long> usageDataMap= new HashMap<>();
+
+        for (int i = appDataList.size(); i-- > 0;) {
+            if (!usageDataMap.containsKey(appNameList.get(i)))
+            {
+                usageDataMap.put(appNameList.get(i), appDataList.get(i).getTotalTimeInForeground() / 60000);
+            }
+            else
+            {
+                usageDataMap.replace(appNameList.get(i), usageDataMap.get(appNameList.get(i)) + appDataList.get(i).getTotalTimeInForeground() / 60000);
+            }
+        }
+        return usageDataMap;
+    }
+
     public static Map<String, Long> getUsageDataMap(int startDayInPast, int endDayInPast, Context context){
     List< UsageStats > appDataList = getInfo(getUsageDataOG(startDayInPast, endDayInPast, context));
     List<String> appNameList = getDescription(appDataList, context);
